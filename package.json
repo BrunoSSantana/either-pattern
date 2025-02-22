@@ -1,6 +1,6 @@
 {
   "name": "type-safe-either",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "A TypeScript implementation of the Either monad pattern for elegant error handling",
   "type": "module",
   "main": "./dist/index.js",
