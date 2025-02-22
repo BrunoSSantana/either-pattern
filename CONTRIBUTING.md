@@ -18,83 +18,78 @@ Antes de contribuir, por favor:
 
 ## Versionamento
 
-Este projeto segue [Semantic Versioning (SemVer)](https://semver.org/lang/pt-BR/):
+Este projeto segue [Semantic Versioning (SemVer)](https://semver.org/lang/pt-BR/) e usa semantic-release para automatizar o processo de versionamento:
 
 - **MAJOR** (X.0.0) - quando há mudanças incompatíveis com versões anteriores
 - **MINOR** (0.X.0) - quando adiciona funcionalidade mantendo compatibilidade
 - **PATCH** (0.0.X) - quando corrige bugs mantendo compatibilidade
 
-### Processo de Release
+### Fluxo de Desenvolvimento e Release
 
-Para publicar uma nova versão:
+1. **Desenvolvimento**:
+   - Crie uma branch a partir da `main`: `git checkout -b feature/nome-da-feature`
+   - Desenvolva suas alterações
+   - Faça commits seguindo o Conventional Commits (ver seção abaixo)
 
-1. Certifique-se que todas as alterações desejadas estão na branch `main`
-2. Certifique-se que todos os testes estão passando
-3. Atualize a versão no `package.json` seguindo SemVer
-4. Crie e faça push de uma tag com prefixo 'v':
-   ```bash
-   git tag v1.0.0  # Substitua pelo número da versão apropriado
-   git push origin v1.0.0
-   ```
-5. O GitHub Actions irá automaticamente:
-   - Executar os testes
-   - Fazer o build do projeto
+2. **Pull Request**:
+   - Abra um PR da sua branch para a `main`
+   - Certifique-se que todos os testes estão passando
+   - Aguarde a revisão e aprovação
+
+3. **Release Automática**:
+   Após o merge do PR na `main`, o semantic-release irá automaticamente:
+   - Analisar os commits do PR
+   - Determinar a próxima versão
+   - Atualizar o CHANGELOG.md
+   - Criar uma nova tag
    - Publicar no NPM
+   - Criar uma release no GitHub
 
 ### Commits
 
-Utilize [Conventional Commits](https://www.conventionalcommits.org/pt-br) para suas mensagens de commit:
+É essencial seguir o [Conventional Commits](https://www.conventionalcommits.org/pt-br), pois o semantic-release usa estas mensagens para determinar a próxima versão:
 
-- `feat:` - nova funcionalidade
-- `fix:` - correção de bug
+- `feat:` - nova funcionalidade (MINOR)
+- `fix:` - correção de bug (PATCH)
 - `docs:` - alteração em documentação
 - `chore:` - alterações em processos de build, ferramentas, etc
 - `refactor:` - refatoração de código
 - `test:` - adição ou modificação de testes
+- `BREAKING CHANGE:` - mudanças incompatíveis (MAJOR)
 
 Exemplo:
 ```bash
 feat(auth): adiciona autenticação via Google OAuth2
-# ou
-feat(api): implementa endpoint de busca de usuários
 
 fix(cache): corrige problema de invalidação do cache
-# ou
-fix(ui): ajusta alinhamento do botão de login em telas pequenas
 
-docs(api): atualiza documentação dos endpoints REST
-# ou
-docs(readme): adiciona instruções de instalação do Docker
-
-chore(deps): atualiza react para versão 18.2.0
-# ou
-chore(ci): configura GitHub Actions para deploy automático
-
-refactor(utils): simplifica função de formatação de data
-# ou
-refactor(components): migra componentes para TypeScript
+feat!: remove suporte para Node 14
+BREAKING CHANGE: Node 14 não é mais suportado
 ```
-
-### Checklist de Release
-
-Antes de criar uma nova tag, verifique:
-
-- [ ] Todos os testes estão passando
-- [ ] A documentação está atualizada
-- [ ] O CHANGELOG.md foi atualizado
-- [ ] A versão no package.json está correta
-- [ ] Todas as alterações foram revisadas
 
 ### Processo de Pull Request
 
-1. Mantenha seu PR focado em uma única mudança
-2. Adicione testes para novas funcionalidades
-3. Atualize a documentação quando necessário
-4. Descreva claramente suas mudanças no PR:
+1. **Preparação**:
+   - Mantenha seu PR focado em uma única mudança
+   - Adicione testes para novas funcionalidades
+   - Atualize a documentação quando necessário
+
+2. **Descrição do PR**:
+   Descreva claramente:
    - Qual o problema resolvido?
    - Como foi resolvido?
    - Há breaking changes?
    - Screenshots (se relevante)
+
+3. **Revisão**:
+   - Aguarde a revisão do time
+   - Faça os ajustes solicitados
+   - Após aprovação, o PR será mergeado na `main`
+
+4. **Release**:
+   - A release será gerada automaticamente após o merge
+   - Não é necessário criar tags ou versões manualmente
+   - O semantic-release cuidará de todo o processo
 
 ### Reportando Bugs
 
