@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "lint": "biome check .",
-    "format": "biome format . --write",
+    "lint": "biome check ./src",
+    "format": "biome format ./src --write",
     "release": "release-it"
   },
   "keywords": [
