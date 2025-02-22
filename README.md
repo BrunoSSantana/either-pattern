@@ -256,3 +256,7 @@ const result = right(42)
     s => new Error(`Invalid length: ${s}`)  // Either<Error, string>
   );
 ```
+
+## Contribuindo
+
+Para contribuir com o projeto, por favor leia nosso [Guia de Contribuição](CONTRIBUTING.md) para informações sobre o processo de versionamento e publicação.
