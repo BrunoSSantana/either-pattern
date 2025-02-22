@@ -13,7 +13,7 @@ npm install @your-org/either
 ## Basic Usage
 
 ```typescript
-import { Either, left, right } from '@your-org/either';
+import { Either, left, right } from 'type-safe-either';
 
 // Success case
 const success = right(42);
